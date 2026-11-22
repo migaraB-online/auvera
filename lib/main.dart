@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'env.dart';
+import 'theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,10 +18,7 @@ class AuveraApp extends StatelessWidget {
     return MaterialApp(
       title: 'AUVERA',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0B1F3A)),
-        scaffoldBackgroundColor: const Color(0xFFFAF6EC),
-      ),
+      theme: auveraLightTheme(),
       home: const ConnectionTest(),
     );
   }
@@ -48,7 +46,10 @@ class ConnectionTest extends StatelessWidget {
             if (snap.hasError) {
               return Text('Connection failed:\n${snap.error}');
             }
-            return Text('Connected! Books in database: ${snap.data}');
+            return Text(
+              'Connected! Books in database: ${snap.data}',
+              style: Theme.of(context).textTheme.titleLarge,
+            );
           },
         ),
       ),
